@@ -1,0 +1,24 @@
+name: Weekly Task
+
+on:
+  schedule:
+    - cron: "0 8 * * MON"  # At 09:00 UTC every Monday
+  workflow_dispatch:  # Allows manual triggering if you want
+
+jobs:
+  run-python-task:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+  
+      - name: Install requirements
+        run: pip install -r requirements.txt  # omit if you don't have requirements
+
+      - name: Run script
+        run: python idescat_calendar.py
