@@ -1,2 +1,6 @@
+
 pandas
-Python-dotenv
+numpy
+requests
+schedule
+python-dotenv
