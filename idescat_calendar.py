@@ -185,6 +185,15 @@ SMTP_PORT = 587  # TLS/STARTTLS
 EMAIL_ADDRESS = os.getenv("EMAIL")
 EMAIL_PASSWORD = os.getenv("PASSWORD") # Use environment variable or replace with your app password
 
+# Llista de persones que rebran el mail:
+# NEW: Get recipients from .env and split them into a list
+RECIPIENT_EMAILS_STR = os.getenv("RECIPIENTS")
+if RECIPIENT_EMAILS_STR:
+    RECIPIENTS = [email.strip() for email in RECIPIENT_EMAILS_STR.split(',')]
+else:
+    RECIPIENTS = [] # Or handle as an error if recipients are mandatory
+
+
 def send_email (recipient_emails, subject, body):
     '''
     Envia un mail amb la informació de les publicacions d'aquesta setmana de l'idescat a una o més persones
@@ -233,7 +242,7 @@ if __name__ == "__main__":
     if dades_body is not None:
 
         # 
-        recipients = ["berta.llugany@gmail.com", "bertallugany@gencat.cat","mmulet94@gmail.com"]
+        recipients = ["berta.llugany@gmail.com", "bertallugany@gencat.cat","mmulet94@gmail.com", "oleguer.gabernet@gmail.com"]
         subject= f"Publicacions Idescat de la setmana del {monday_str} al {sunday_str}(test)"
 
     # Formategem el llistat que obtenim a dades_body perquè quedi un contingut coherent:
@@ -248,9 +257,14 @@ if __name__ == "__main__":
 
         email_body = "\n".join(email_body_lines)
 
-        # Enviem el mail
+        # Pass the RECIPIENTS list to the send_email function
+        if RECIPIENTS: # Only try to send if there are recipients
+             # Enviem el mail
+            send_email(RECIPIENTS, subject, email_body)
+        else:
+            print("Error: No recipients found in .env file. Email not sent.")
 
-        send_email(recipients, subject, email_body)
+              
     else:
         print("Error obtenint els esdeveniments de la setmana de l'API d'Idescat. El mail no ha estat enviat")
 
