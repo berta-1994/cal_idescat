@@ -1,0 +1,38 @@
+
+name: Weekly Task
+
+on:
+  schedule:
+    - cron: "0 8 * * MON"  # At 09:00 UTC every Monday
+  workflow_dispatch:  # Allows manual triggering if you want
+
+jobs:
+  run-python-task:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+  
+      - name: Install requirements
+        run: pip install -r requirements.txt  # omit if you don't have requirements
+
+      - name: Install Catalan locale
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y locales
+          sudo locale-gen ca_ES.UTF-8
+          sudo update-locale LANG=ca_ES.UTF-8
+      - name: Set environment variables
+        run: |
+          echo "LANG=ca_ES.UTF-8" >> $GITHUB_ENV
+          echo "LC_ALL=ca_ES.UTF-8" >> $GITHUB_ENV
+      - name: Run script
+        env:
+          LANG: ca_ES.UTF-8
+          LC_ALL: ca_ES.UTF-8
+        run: python idescat_calendar.py
