@@ -36,8 +36,11 @@ jobs:
       - name: Run script
         env:
           # Add your secrets here, mapping them to environment variables
-          EMAIL: ${{ secrets.berta.llugany@gmail.com}}
-          PASSWORD: ${{ secrets.lczz eikt rbqv ghns }}
-          RECIPIENTS: ${{ secrets."berta.llugany@gmail.com, bertallugany@gencat.cat,mmulet94@gmail.com,oleguer.gabernet@gmail.com, camarelo@gencat.cat,ebertran@gencat.cat,ecasanovasm@gencat.cat,mfajardo_ext@gencat.cat,albert.font@gencat.cat,helena.linares@gencat.cat,belllodra@gencat.cat,amonreal@gencat.cat,jmmussons@gencat.cat,mariaorriols@gencat.cat,xavieralexandrepedros@gencat.cat"}}
+          # Reference the *names* of your secrets, not their values.
+          # These names must match exactly what you defined in GitHub Secrets.
+          EMAIL: ${{ secrets.EMAIL_ADDRESS }}
+          PASSWORD: ${{ secrets.APP_PASSWORD }}
+          RECIPIENTS: ${{ secrets.RECIPIENT_LIST }}
+          
           # LANG and LC_ALL are already set from the previous step via GITHUB_ENV
         run: python idescat_calendar.py

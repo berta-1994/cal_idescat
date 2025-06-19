@@ -9,6 +9,7 @@
 
 # IMPORTEM LLIBRERIES
 
+
 import pandas as pd
 import os
 import numpy as np
@@ -241,8 +242,7 @@ if __name__ == "__main__":
 
     if dades_body is not None:
 
-        # 
-        recipients = ["berta.llugany@gmail.com", "bertallugany@gencat.cat","mmulet94@gmail.com", "oleguer.gabernet@gmail.com"]
+       
         subject= f"Publicacions Idescat de la setmana del {monday_str} al {sunday_str}(test)"
 
     # Formategem el llistat que obtenim a dades_body perquè quedi un contingut coherent:
