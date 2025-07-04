@@ -2,7 +2,7 @@ name: Weekly Task
 
 on:
   schedule:
-    - cron: "0 8 * * MON"  # At 09:00 UTC every Monday
+    - cron: "0 8 * * MON"  # At 08:00 UTC every Monday
   workflow_dispatch:  # Allows manual triggering if you want
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.13'
   
       - name: Install requirements
         run: pip install -r requirements.txt  # omit if you don't have requirements
