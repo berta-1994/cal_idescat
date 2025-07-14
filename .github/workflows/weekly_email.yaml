@@ -2,7 +2,7 @@ name: Weekly Task
 
 on:
   schedule:
-    - cron: "0 8 * * MON"  # At 08:00 UTC every Monday
+    - cron: "0 6 * * MON"  # At 06:00 UTC every Monday - Esp 8:00
   workflow_dispatch:  # Allows manual triggering if you want
 
 jobs:
