@@ -251,7 +251,7 @@ if __name__ == "__main__":
                             "\nA continuació trobaràs els esdeveniments del calendari de l'Idescat per a aquesta setmana:",
                             ""]
         email_body_lines.extend(dades_body)
-        email_body_lines.append("\nEspereo que aquesta informació et sigui útil!")
+        email_body_lines.append("\nEspero que aquesta informació et sigui útil!")
         email_body_lines.append("\nSalutacions,")
         email_body_lines.append("Berta")
 
